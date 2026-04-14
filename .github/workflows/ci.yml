@@ -25,14 +25,14 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
+          key: ${{ runner.os }}-m2-v3-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2-v3-
 
       - name: Testes order-service
-        run: cd order-service && mvn test -q
+        run: cd order-service && mvn test --no-transfer-progress
 
       - name: Testes notification-service
-        run: cd notification-service && mvn test -q
+        run: cd notification-service && mvn test --no-transfer-progress
 
       - name: Upload relatorio de testes
         uses: actions/upload-artifact@v4
